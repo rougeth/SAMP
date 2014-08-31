@@ -10,11 +10,12 @@ Running SAMP
 Downloading and configuring environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Clone
+* Cloning SAMP repository:
     ``git clone https://github.com/rougeth/SAMP``.
 
-* Bower
+* Installing front-end packages:
     Bower is a package manager for the web. We use it to install Bootstrap, jQuery, etc.
+
     In the root folder, run ``bower install``.
 
 
