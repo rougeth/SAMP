@@ -4,6 +4,19 @@ SAMP
 
 Sistema de Auxílio à Mobilidade Pública
 
+Running SAMP
+------------
+
+Downloading and configuring environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Clone
+    ``git clone https://github.com/rougeth/SAMP``.
+
+* Bower
+    Bower is a package manager for the web. We use it to install Bootstrap, jQuery, etc.
+    In the root folder, run ``bower install``.
+
 
 Contributing
 ------------
