@@ -8,6 +8,6 @@ from buses.views import bus_stops
 class BusStopsTest(TestCase):
 
     def test_url_to_view(self):
-        found = resolve('/bus-stops')
+        found = resolve('/bus/stops')
         self.assertEqual(found.func, bus_stops)
 
