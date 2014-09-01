@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Bus Stops{% endblock %}
+
+{% block footer_js %}
+  <script
+    type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCmtruSSIk1rvXiBUuK9-W5dtyAYOqjU_g&sensor=false"></script>
+
+  <script>
+    $(function () {
+      var mapOptions = {
+        zoom: 8,
+        center: new google.maps.LatLng(-34.397, 150.644),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      var map = new google.maps.Map(document.getElementById("bus-stops-map"), mapOptions);
+    });
+
+  </script>
+
+{% endblock %}
+
+{% block content %}
+<div id="bus-stops-map"></div>
+{% endblock %}
