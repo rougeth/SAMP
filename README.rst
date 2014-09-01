@@ -15,8 +15,7 @@ Downloading and configuring environment
 
 * Installing front-end packages:
     Bower is a package manager for the web. We use it to install Bootstrap, jQuery, etc.
-
-    In the root folder, run ``bower install``.
+    In the root folder, run ``bower install``. It will download all packages listed in *bower.json* and install in *src/static* folder
 
 
 Contributing
