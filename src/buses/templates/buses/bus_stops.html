@@ -10,8 +10,11 @@
   <script>
     $(function () {
       var mapOptions = {
-        zoom: 8,
-        center: new google.maps.LatLng(-34.397, 150.644),
+        zoom: 13,
+        minZoom: 13,
+        maxZoom: 16,
+        streetViewControl: false,
+        center: new google.maps.LatLng(-15.7828089, -47.8920592),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
       var map = new google.maps.Map(document.getElementById("bus-stops-map"), mapOptions);
