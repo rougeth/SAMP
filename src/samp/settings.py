@@ -38,8 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Thrid party
-    'geoposition',
 
+    # SAMP
     'buses',
 )
 
