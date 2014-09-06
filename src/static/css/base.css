@@ -1,0 +1,51 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+.samp-navbar {
+    margin-bottom: 0;
+    color: #424242;
+    background: #fafafa;
+    border-radius: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #eee;
+    border-left: 0;
+}
+
+.samp-navbar .navbar-brand {
+    font-weight: bold;
+    color: #424242;
+}
+.samp-navbar .navbar-brand:hover {
+    color: #424242;
+}
+
+.samp-navbar .navbar-subtitle {
+    color: #5677fc;
+    font-weight: normal;
+    padding: 15px;
+}
+.samp-navbar .navbar-subtitle:hover {
+    color: #5677fc;
+    font-weight: normal;
+    padding: 15px;
+}
+
+.samp-navbar .navbar-nav li a {
+    color: #757575;
+}
+
+.samp-navbar .navbar-nav li a:hover {
+    color: #757575;
+}
+
+#bus-stops-map {
+    width: 100%;
+    height: 100vh;
+    height: -webkit-calc(100vh - 51px);  /* para Chrome */
+    height: -moz-calc(100vh - 51px);     /* para Firefox */
+    height: calc(100vh - 51px);
+
+}
