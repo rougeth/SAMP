@@ -39,6 +39,8 @@ INSTALLED_APPS = (
 
     # Thrid party
     'geoposition',
+
+    'buses',
 )
 
 MIDDLEWARE_CLASSES = (
