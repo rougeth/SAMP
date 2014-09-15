@@ -1,2 +1,0 @@
-# Django 1.7c3
-git+https://github.com/django/django@1.7c3
