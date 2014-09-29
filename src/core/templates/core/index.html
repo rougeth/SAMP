@@ -53,5 +53,13 @@
   <script src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
   <script src="{% static "angular/angular.js" %}"></script>
   <script src="{% static "angular-route/angular-route.js" %}"></script>
+  <script>
+    var samp = angular.module('samp', []);
+    samp.config(function($interpolateProvider) {
+      $interpolateProvider.startSymbol('{$');
+      $interpolateProvider.endSymbol('$}');
+    });
+
+  </script>
 </body>
 </html>
