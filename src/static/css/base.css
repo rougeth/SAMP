@@ -1,0 +1,12 @@
+html {
+    height: 100%;
+}
+
+#samp-map {
+    width: 100%;
+    height: 100vh;
+}
+
+.samp-navbar {
+    margin-bottom: 0;
+}
