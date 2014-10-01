@@ -5,6 +5,9 @@ html {
 #samp-map {
     width: 100%;
     height: 100vh;
+    height: -webkit-calc(100vh - 52px); /* para Chrome */
+    height: -moz-calc(100vh - 52px); /* para Firefox */
+    height: calc(100vh - 52px);
 }
 
 .samp-navbar {
