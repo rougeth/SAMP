@@ -8,9 +8,19 @@ samp.config(function($interpolateProvider, $routeProvider) {
       controller: 'HomeController',
       template: " "
     })
+    .when('/buses/stops', {
+      controller: 'BusesStopsController',
+      template: " "
+    })
     .otherwise({ redirectTo: '/'});
 });
 
 samp.controller('HomeController', function($scope) {
     console.log('HomeController');
+});
+
+samp.controller('BusesStopsController', function($scope) {
+    console.log('BusesStopsController');
+    var brasilia = new google.maps.LatLng(-15.7929449, -47.8882138);
+    add_marker(brasilia);
 });
