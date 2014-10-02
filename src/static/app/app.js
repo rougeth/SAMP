@@ -17,6 +17,7 @@ samp.config(function($interpolateProvider, $routeProvider) {
 
 samp.controller('HomeController', function($scope) {
     console.log('HomeController');
+    remove_markers();
 });
 
 samp.controller('BusesStopsController', function($scope) {

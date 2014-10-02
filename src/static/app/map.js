@@ -22,4 +22,11 @@ function add_marker(locale) {
     markers.push(marker);
 }
 
+function remove_markers() {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+    markers = [];
+}
+
 google.maps.event.addDomListener(window, 'load', init_samp_map);
