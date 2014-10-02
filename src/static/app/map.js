@@ -1,8 +1,11 @@
 var map;
 function init_samp_map() {
   var mapOptions = {
-    zoom: 8,
-    center: new google.maps.LatLng(-34.397, 150.644)
+    maxZoom: 16,
+    minZoom: 14,
+    zoom: 14,
+    streetViewControl: false,
+    center: new google.maps.LatLng(-15.7929449, -47.8882138)
   };
   map = new google.maps.Map(document.getElementById('samp-map'), mapOptions);
 }
