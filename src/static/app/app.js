@@ -1,4 +1,5 @@
-var samp = angular.module('samp', ['ngRoute']);
+var samp = angular.module('samp', ['ngRoute', 'ngResource']);
+
 samp.config(function($interpolateProvider, $routeProvider) {
   $interpolateProvider.startSymbol('{$');
   $interpolateProvider.endSymbol('$}');
@@ -9,7 +10,7 @@ samp.config(function($interpolateProvider, $routeProvider) {
       template: " "
     })
     .when('/buses/stops', {
-      controller: 'BusesStopsController',
+      controller: 'BusStopsController',
       template: " "
     })
     .otherwise({ redirectTo: '/'});
@@ -20,8 +21,21 @@ samp.controller('HomeController', function($scope) {
     remove_markers();
 });
 
-samp.controller('BusesStopsController', function($scope) {
-    console.log('BusesStopsController');
-    var brasilia = new google.maps.LatLng(-15.7929449, -47.8882138);
-    add_marker(brasilia);
+samp.factory("getStops", function($resource) {
+    return $resource("/api/buses/stops");
+});
+
+samp.controller('BusStopsController', function($scope, getStops) {
+    console.log('BusStopsController');
+    var coordenate;
+    getStops.query(function(stops) {
+        for(i=0; i<stops.length; i++) {
+            coordenate = new google.maps.LatLng(
+                stops[i].latitude,
+                stops[i].longitude
+            );
+            add_marker(coordenate);
+        }
+    });
+    console.log(markers);
 });
