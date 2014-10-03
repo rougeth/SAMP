@@ -17,7 +17,7 @@ html {
     border-left: 0;
     border-top: 0;
     border-right: 0;
-    border-bottom: 2px solid #91a7ff;
+    border-bottom: 1px solid #91a7ff;
     background: #5677fc;
 }
 
@@ -42,6 +42,50 @@ html {
     color: #fff;
 }
 
-.navbar-nav>li>.dropdown-menu {
-    border-top: 2px solid #738ffe;
+.samp-navbar .navbar-nav>li>.dropdown-menu {
+    border-top: 1px solid #738ffe;
+}
+
+.samp-navbar .navbar-toggle,
+.samp-navbar .navbar-toggle:hover,
+.samp-navbar .navbar-toggle:focus {
+    background: #738ffe;
+    border-color: #738ffe;
+}
+
+.samp-navbar .navbar-toggle .icon-bar {
+    background: #fff;
+}
+
+.samp-navbar .navbar-collapse {
+    border-color: #738ffe;
+}
+
+.samp-navbar .navbar-nav .open .dropdown-menu>li>a {
+    color: #fff;
+}
+
+.samp-subnavbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    border: 0;
+    background: #212121;
+}
+
+.samp-subnavbar .navbar-nav>li>a {
+    color: #e0e0e0;
+}
+
+.samp-subnavbar .navbar-brand:hover,
+.samp-subnavbar .navbar-brand:focus,
+.samp-subnavbar .navbar-nav>li>a:hover,
+.samp-subnavbar .navbar-nav>li>a:focus {
+    color: #fff;
+}
+
+.samp-subnavbar .navbar-nav>.open>a,
+.samp-subnavbar .navbar-nav>.open>a:hover,
+.samp-subnavbar .navbar-nav>.open>a:focus {
+    background: #424242;
+    color: #fff;
 }

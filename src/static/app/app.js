@@ -9,6 +9,10 @@ samp.config(function($interpolateProvider, $routeProvider) {
       controller: 'HomeController',
       template: " "
     })
+    .when('/buses/lines', {
+      controller: 'BusLinesController',
+      templateUrl: "/static/app/buses/lines.html"
+    })
     .when('/buses/stops', {
       controller: 'BusStopsController',
       template: " "
@@ -17,18 +21,19 @@ samp.config(function($interpolateProvider, $routeProvider) {
 });
 
 samp.controller('HomeController', function($scope) {
+    reset();
     console.log('HomeController');
-    remove_markers();
 });
 
-samp.factory("getStops", function($resource) {
+samp.factory("api_stops", function($resource) {
     return $resource("/api/buses/stops");
 });
 
-samp.controller('BusStopsController', function($scope, getStops) {
+samp.controller('BusStopsController', function($scope, api_stops) {
+    reset();
     console.log('BusStopsController');
     var coordenate;
-    getStops.query(function(stops) {
+    api_stops.query(function(stops) {
         for(i=0; i<stops.length; i++) {
             coordenate = new google.maps.LatLng(
                 stops[i].latitude,
@@ -39,3 +44,23 @@ samp.controller('BusStopsController', function($scope, getStops) {
     });
     console.log(markers);
 });
+
+samp.controller('BusLinesController', function($scope, api_stops) {
+    reset();
+    console.log('BusLinesController');
+    $('#samp-map')
+        .css('height', '-webkit-calc(100vh - 104px)')
+        .css('height', '-moz-cal(100vh - 104px)')
+        .css('height', 'calc(100vh - 104px)');
+
+
+});
+
+function reset() {
+    remove_markers();
+    $('#samp-map')
+        .css('height', '-webkit-calc(100vh - 52px)')
+        .css('height', '-moz-cal(100vh - 52px)')
+        .css('height', 'calc(100vh - 52px)');
+}
+

@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" ng-app="samp">
@@ -26,22 +27,22 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="">
-              Buses <span class="caret"></span>
+              {% trans 'Buses' %} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#/buses/lines">Lines</a></li>
-              <li><a href="#/buses/stops">Stops</a></li>
-              <li><a href="#/buses/stations">Stations</a></li>
+              <li><a href="#/buses/lines">{% trans 'Lines' %}</a></li>
+              <li><a href="#/buses/stops">{% trans 'Stops' %}</a></li>
+              <li><a href="#/buses/stations">{% trans 'Stations' %}</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Subways <span class="caret"></span>
+              {% trans 'Subways' %} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#/subways/lines">Lines</a></li>
-              <li><a href="#/subways/stops">Stops</a></li>
-              <li><a href="#/subways/stations">Stations</a></li>
+              <li><a href="#/subways/lines">{% trans 'Lines' %}</a></li>
+              <li><a href="#/subways/stops">{% trans 'Stops' %}</a></li>
+              <li><a href="#/subways/stations">{% trans 'Stations' %}</a></li>
             </ul>
             </ul>
           </li>
