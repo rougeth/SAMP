@@ -1,11 +1,14 @@
 {
   "name": "SAMP",
+  "version": "0.01",
+  "homepage": "https://github.com/rougeth/SAMP",
+  "authors": [
+    "Marco Rougeth <marco@rougeth.com>",
+    "Mário Sérgio <sergio.mario_q@hotmail.com>"
+  ],
   "dependencies": {
-    "bootstrap": "~3.2.0",
-    "angular": "~1.3.0"
-  },
-  "private": true,
-  "resolutions": {
-    "angular": "~1.3.0"
+    "angular-resource": "~1.2.26",
+    "angular-route": "~1.2.24",
+    "bootstrap": "~3.2.0"
   }
 }
