@@ -37,7 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third-party apps
+    'rest_framework',
+
+    # SAMP apps
     'core',
+    'buses',
 )
 
 MIDDLEWARE_CLASSES = (
