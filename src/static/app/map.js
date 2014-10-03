@@ -24,7 +24,7 @@ function add_marker(locale) {
 
 function remove_markers() {
     for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
+        markers[i].setMap(null);
     }
     markers = [];
 }
