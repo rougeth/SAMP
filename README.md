@@ -27,6 +27,10 @@ Run the next commands inside the project root folder.
 - **Python requirements**
 
   `$ pip install -r requirements`
+  
+- **Load fixtures**
+
+  `$ python src/manage.py loaddata fixtures_bus_stops.json`
 
 
 ## Run
