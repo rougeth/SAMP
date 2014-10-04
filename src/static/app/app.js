@@ -39,7 +39,7 @@ samp.controller('BusStopsController', function($scope, api_stops) {
                 stops[i].latitude,
                 stops[i].longitude
             );
-            add_marker(coordenate);
+            add_bus_stop(coordenate);
         }
     });
     console.log(markers);
@@ -57,7 +57,7 @@ samp.controller('BusLinesController', function($scope, api_stops) {
 });
 
 function reset() {
-    remove_markers();
+    remove_all_markers();
     $('#samp-map')
         .css('height', '-webkit-calc(100vh - 52px)')
         .css('height', '-moz-cal(100vh - 52px)')

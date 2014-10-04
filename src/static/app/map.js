@@ -21,7 +21,7 @@ function init_samp_map() {
         mapOptions);
 }
 
-function add_marker(locale) {
+function add_bus_stop(locale) {
     var marker = new google.maps.Marker({
         position: locale,
         map: map,
@@ -30,7 +30,7 @@ function add_marker(locale) {
     markers.push(marker);
 }
 
-function remove_markers() {
+function remove_all_markers() {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
     }
