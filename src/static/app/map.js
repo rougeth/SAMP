@@ -24,7 +24,8 @@ function init_samp_map() {
 function add_marker(locale) {
     var marker = new google.maps.Marker({
         position: locale,
-        map: map
+        map: map,
+        icon: '/static/imgs/bus_stop.png'
     });
     markers.push(marker);
 }
