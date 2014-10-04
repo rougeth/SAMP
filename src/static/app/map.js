@@ -4,11 +4,18 @@ var markers = [];
 function init_samp_map() {
     var brasilia = new google.maps.LatLng(-15.7929449, -47.8882138);
     var mapOptions = {
-        maxZoom: 16,
+        maxZoom: 17,
         minZoom: 14,
         zoom: 14,
         streetViewControl: false,
-        center: brasilia
+        center: brasilia,
+        styles: [
+            {
+                featureType: "transit.station.bus",
+                stylers: [
+                    { visibility: "off" }
+                ]
+            }]
     };
     map = new google.maps.Map(document.getElementById('samp-map'),
         mapOptions);
