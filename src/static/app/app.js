@@ -48,12 +48,7 @@ samp.controller('BusStopsController', function($scope, api_stops) {
 samp.controller('BusLinesController', function($scope, api_stops) {
     reset();
     console.log('BusLinesController');
-    $('#samp-map')
-        .css('height', '-webkit-calc(100vh - 104px)')
-        .css('height', '-moz-cal(100vh - 104px)')
-        .css('height', 'calc(100vh - 104px)');
-
-
+    $('#bus_lines').modal('show');
 });
 
 function reset() {
