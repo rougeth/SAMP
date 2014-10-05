@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-03 17:47-0300\n"
+"POT-Creation-Date: 2014-10-04 17:49-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,22 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: core/templates/core/index.html:30
-msgid "Buses"
-msgstr "Ônibus"
-
-#: core/templates/core/index.html:33 core/templates/core/index.html.py:43
-msgid "Lines"
+#: core/templates/core/index.html:28
+msgid "Bus Routes"
 msgstr "Linhas"
 
-#: core/templates/core/index.html:34 core/templates/core/index.html.py:44
-msgid "Stops"
+#: core/templates/core/index.html:29
+#| msgid "Stops"
+msgid "Bus Stops"
 msgstr "Paradas"
 
-#: core/templates/core/index.html:35 core/templates/core/index.html.py:45
-msgid "Stations"
-msgstr "Estações"
+#~ msgid "Buses"
+#~ msgstr "Ônibus"
 
-#: core/templates/core/index.html:40
-msgid "Subways"
-msgstr "Metrôs"
+#~ msgid "Lines"
+#~ msgstr "Linhas"
+
+#~ msgid "Stations"
+#~ msgstr "Estações"
+
+#~ msgid "Subways"
+#~ msgstr "Metrôs"
