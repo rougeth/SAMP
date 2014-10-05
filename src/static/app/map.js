@@ -6,7 +6,7 @@ function init_samp_map() {
     var mapOptions = {
         maxZoom: 17,
         minZoom: 14,
-        zoom: 14,
+        zoom: 15,
         streetViewControl: false,
         center: brasilia,
         styles: [
