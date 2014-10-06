@@ -20,13 +20,17 @@ Run the next commands inside the project root folder.
 
   `$ git clone https://github.com/rougeth/samp`
 
+- **Bower install**
+
+  `$ npm install -g bower`
+
 - **JS and CSS requirements**
 
   `$ bower install`
 
 - **Python requirements**
 
-  `$ pip install -r requirements`
+  `$ pip install -r requirements.txt`
 
 
 ## Run
@@ -36,6 +40,8 @@ For the next instructions, be inside `/src` folder.
 - **Create database**
  
   `$ python manage.py syncdb`
+  `$ python manage.py makemigrations`
+  `$ python manage.py migrate`
 
 - **Load fixtures**
 
