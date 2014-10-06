@@ -40,7 +40,9 @@ For the next instructions, be inside `/src` folder.
 - **Create database**
  
   `$ python manage.py syncdb`
+  
   `$ python manage.py makemigrations`
+  
   `$ python manage.py migrate`
 
 - **Load fixtures**
