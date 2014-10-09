@@ -6,3 +6,6 @@ class Stop(models.Model):
     longitude = models.FloatField()
 
 
+class Region(models.Model):
+    name = models.CharField(max_length=50)
+
