@@ -29,6 +29,10 @@ samp.factory("api_stops", function($resource) {
     return $resource("/api/buses/stops");
 });
 
+samp.factory("api_regions", function($resource) {
+    return $resource("/api/buses/regions");
+});
+
 samp.controller('BusStopsController', function($scope, api_stops) {
     reset();
     console.log('BusStopsController');
@@ -45,9 +49,14 @@ samp.controller('BusStopsController', function($scope, api_stops) {
     console.log(markers);
 });
 
-samp.controller('BusLinesController', function($scope, api_stops) {
+samp.controller('BusLinesController', function($scope, api_regions) {
     reset();
     console.log('BusLinesController');
+    api_regions.query(function(regions) {
+        $scope.regions = regions;
+        $scope.origin = null;
+        $scope.destination = null;
+    });
     setTimeout(function() {
         $('#bus_lines').modal('show');
     }, 100);
