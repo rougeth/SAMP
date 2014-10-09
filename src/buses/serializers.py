@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
-from buses.models import Stops
+from buses.models import Stop
 
 
 class StopsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Stops
+        model = Stop
         fields = ('latitude', 'longitude')
 

@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
-from buses.models import Stops
+from buses.models import Stop
 from buses.serializers import StopsSerializer
 
 
@@ -22,6 +22,6 @@ class JSONResponse(HttpResponse):
 @csrf_exempt
 def bus_stops(request):
     if request.method == 'GET':
-        stops = Stops.objects.all()
+        stops = Stop.objects.all()
         serializer = StopsSerializer(stops, many=True)
         return JSONResponse(serializer.data)
