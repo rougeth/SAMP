@@ -38,16 +38,16 @@ Run the next commands inside the project root folder.
 For the next instructions, be inside `/src` folder.
 
 - **Create database**
- 
+
   `$ python manage.py syncdb`
-  
+
   `$ python manage.py makemigrations`
-  
+
   `$ python manage.py migrate`
 
 - **Load fixtures**
 
-  `$ python manage.py loaddata ../fixtures_bus_stops.json`
+  `$ python manage.py loaddata ../fixtures_buses.json`
 
 - **Run dev server**
 
