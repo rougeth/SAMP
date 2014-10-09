@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from buses.models import Stop
+from buses.models import Region, Stop
 
 
 class StopsSerializer(serializers.ModelSerializer):
@@ -8,3 +8,7 @@ class StopsSerializer(serializers.ModelSerializer):
         model = Stop
         fields = ('latitude', 'longitude')
 
+class RegionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Region
+        fields = ('name',)
