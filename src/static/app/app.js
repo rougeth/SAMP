@@ -48,7 +48,9 @@ samp.controller('BusStopsController', function($scope, api_stops) {
 samp.controller('BusLinesController', function($scope, api_stops) {
     reset();
     console.log('BusLinesController');
-    $('#bus_lines').modal('show');
+    setTimeout(function() {
+        $('#bus_lines').modal('show');
+    }, 100);
 });
 
 function reset() {
