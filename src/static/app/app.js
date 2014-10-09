@@ -54,8 +54,8 @@ samp.controller('BusLinesController', function($scope, api_regions) {
     console.log('BusLinesController');
     api_regions.query(function(regions) {
         $scope.regions = regions;
-        $scope.origin = null;
-        $scope.destination = null;
+        $scope.origin = $scope.regions[0];
+        $scope.destination = $scope.regions[0];
     });
     setTimeout(function() {
         $('#bus_lines').modal('show');
