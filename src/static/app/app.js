@@ -41,6 +41,10 @@ samp.factory("api_regions", function($resource) {
     return $resource("/api/buses/regions");
 });
 
+samp.factory("api_regions_subway", function($resource) {
+    return $resource("/api/subways/regions");
+});
+
 samp.controller('BusStopsController', function($scope, api_stops) {
     reset();
     console.log('BusStopsController');
