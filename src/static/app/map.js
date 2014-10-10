@@ -58,6 +58,15 @@ function add_bus_stop(locale) {
     markers.push(marker);
 }
 
+function add_subway_stop(locale) {
+    var marker = new google.maps.Marker({
+        position: locale,
+        map: map,
+        icon: '/static/imgs/subway_stop.png'
+    });
+    markers.push(marker);
+}
+
 function remove_all_markers() {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);

@@ -17,6 +17,10 @@ samp.config(function($interpolateProvider, $routeProvider) {
       controller: 'BusStopsController',
       template: " "
     })
+    .when('/subways/stops', {
+      controller: 'SubwayStopsController',
+      template: " "
+    })
     .otherwise({ redirectTo: '/'});
 });
 
@@ -27,6 +31,10 @@ samp.controller('HomeController', function($scope) {
 
 samp.factory("api_stops", function($resource) {
     return $resource("/api/buses/stops");
+});
+
+samp.factory("api_stops_subway", function($resource) {
+    return $resource("/api/subways/stops");
 });
 
 samp.factory("api_regions", function($resource) {
@@ -44,6 +52,22 @@ samp.controller('BusStopsController', function($scope, api_stops) {
                 stops[i].longitude
             );
             add_bus_stop(coordenate);
+        }
+    });
+    console.log(markers);
+});
+
+samp.controller('SubwayStopsController', function($scope, api_stops_subway) {
+    reset();
+    console.log('SubwayStopsController');
+    var coordenate;
+    api_stops_subway.query(function(stops) {
+        for(i=0; i<stops.length; i++) {
+            coordenate = new google.maps.LatLng(
+                stops[i].latitude,
+                stops[i].longitude
+            );
+            add_subway_stop(coordenate);
         }
     });
     console.log(markers);
