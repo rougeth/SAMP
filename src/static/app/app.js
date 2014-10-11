@@ -1,6 +1,7 @@
 angular.module('samp', [
     'ngRoute',
-    'samp.buses'
+    'samp.buses',
+    'samp.subways'
 ])
 
 .config(function($interpolateProvider, $routeProvider) {

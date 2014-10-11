@@ -23,7 +23,7 @@ function init_samp_map() {
 
    // Bounds for DF
    var strictBounds = new google.maps.LatLngBounds(
-     new google.maps.LatLng(-15.792, -47.888), 
+     new google.maps.LatLng(-15.792, -47.888),
      new google.maps.LatLng(-15.7929449, -47.8882138)
    );
 
@@ -54,6 +54,15 @@ function add_bus_stop(locale) {
         position: locale,
         map: map,
         icon: '/static/imgs/bus_stop.png'
+    });
+    markers.push(marker);
+}
+
+function add_subway_station(locale) {
+    var marker = new google.maps.Marker({
+        position: locale,
+        map: map,
+        icon: '/static/imgs/subway_stop.png'
     });
     markers.push(marker);
 }

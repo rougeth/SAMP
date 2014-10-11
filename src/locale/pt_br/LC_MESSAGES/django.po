@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-04 17:49-0300\n"
+"POT-Creation-Date: 2014-10-11 19:42-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,18 +23,19 @@ msgid "Bus Routes"
 msgstr "Linhas"
 
 #: core/templates/core/index.html:29
-#| msgid "Stops"
 msgid "Bus Stops"
 msgstr "Paradas"
+
+#: core/templates/core/index.html:30
+msgid "Stations"
+msgstr "Estações"
+
+#~| msgid "Subways"
+#~ msgid "Subway Stations"
+#~ msgstr "Estações de Metrô"
 
 #~ msgid "Buses"
 #~ msgstr "Ônibus"
 
 #~ msgid "Lines"
 #~ msgstr "Linhas"
-
-#~ msgid "Stations"
-#~ msgstr "Estações"
-
-#~ msgid "Subways"
-#~ msgstr "Metrôs"

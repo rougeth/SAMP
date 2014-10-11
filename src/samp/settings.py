@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     # SAMP apps
     'core',
     'buses',
+    'subways',
 )
 
 MIDDLEWARE_CLASSES = (
