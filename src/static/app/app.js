@@ -1,65 +1,13 @@
-var samp = angular.module('samp', ['ngRoute', 'ngResource']);
+angular.module('samp', [
+    'ngRoute',
+    'samp.buses'
+])
 
-samp.config(function($interpolateProvider, $routeProvider) {
-  $interpolateProvider.startSymbol('{$');
-  $interpolateProvider.endSymbol('$}');
+.config(function($interpolateProvider, $routeProvider) {
+    $interpolateProvider.startSymbol('{$');
+    $interpolateProvider.endSymbol('$}');
 
-  $routeProvider
-    .when('/', {
-      controller: 'HomeController',
-      template: " "
-    })
-    .when('/buses/lines', {
-      controller: 'BusLinesController',
-      templateUrl: "/static/app/buses/lines.html"
-    })
-    .when('/buses/stops', {
-      controller: 'BusStopsController',
-      template: " "
-    })
-    .otherwise({ redirectTo: '/'});
-});
-
-samp.controller('HomeController', function($scope) {
-    reset();
-    console.log('HomeController');
-});
-
-samp.factory("api_stops", function($resource) {
-    return $resource("/api/buses/stops");
-});
-
-samp.factory("api_regions", function($resource) {
-    return $resource("/api/buses/regions");
-});
-
-samp.controller('BusStopsController', function($scope, api_stops) {
-    reset();
-    console.log('BusStopsController');
-    var coordenate;
-    api_stops.query(function(stops) {
-        for(i=0; i<stops.length; i++) {
-            coordenate = new google.maps.LatLng(
-                stops[i].latitude,
-                stops[i].longitude
-            );
-            add_bus_stop(coordenate);
-        }
-    });
-    console.log(markers);
-});
-
-samp.controller('BusLinesController', function($scope, api_regions) {
-    reset();
-    console.log('BusLinesController');
-    api_regions.query(function(regions) {
-        $scope.regions = regions;
-        $scope.origin = $scope.regions[0];
-        $scope.destination = $scope.regions[0];
-    });
-    setTimeout(function() {
-        $('#bus_lines').modal('show');
-    }, 100);
+    $routeProvider.otherwise({redirectTo: '/'});
 });
 
 function reset() {
@@ -69,4 +17,3 @@ function reset() {
         .css('height', '-moz-cal(100vh - 52px)')
         .css('height', 'calc(100vh - 52px)');
 }
-

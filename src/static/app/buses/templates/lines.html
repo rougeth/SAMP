@@ -21,9 +21,23 @@
             </div>
           </div>
         </form>
+        <table class="table table-hover" ng-show="lines">
+          <thead>
+            <tr>
+              <th>Linha</th>
+              <th>Regiões</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="line in lines">
+              <td>{$ line.name $}</td>
+              <td>{$ line.regions $}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Pesquisar</button>
+        <button ng-click="search()" type="button" class="btn btn-primary">Pesquisar</button>
       </div>
     </div>
   </div>

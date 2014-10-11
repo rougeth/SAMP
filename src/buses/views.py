@@ -5,8 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
-from buses.models import Region, Stop
-from buses.serializers import RegionsSerializer, StopsSerializer
+from buses.models import Line, Region, Stop
+from buses.serializers import (LinesSerializer, RegionsSerializer,
+                                StopsSerializer)
 
 
 class JSONResponse(HttpResponse):
@@ -20,15 +21,27 @@ class JSONResponse(HttpResponse):
 
 
 @csrf_exempt
+def bus_regions(request):
+    if request.method == 'GET':
+        regions = Region.objects.all()
+        serializer = RegionsSerializer(regions, many=True)
+        return JSONResponse(serializer.data)
+
+
+@csrf_exempt
 def bus_stops(request):
     if request.method == 'GET':
         stops = Stop.objects.all()
         serializer = StopsSerializer(stops, many=True)
         return JSONResponse(serializer.data)
 
+
 @csrf_exempt
-def bus_regions(request):
+def bus_lines(request, region_a, region_b):
     if request.method == 'GET':
-        regions = Region.objects.all()
-        serializer = RegionsSerializer(regions, many=True)
+        region_a = Region.objects.get(name=region_a)
+        region_b = Region.objects.get(name=region_b)
+        lines = Line.objects.filter(regions__id=region_a.id).filter(regions__id=region_b.id)
+
+        serializer = LinesSerializer(lines, many=True)
         return JSONResponse(serializer.data)
