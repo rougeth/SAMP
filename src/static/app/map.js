@@ -78,6 +78,19 @@ function showRoute(waypoints) {
     var p = [];
     remove_rendered_routes();
     directionsDisplay = new google.maps.DirectionsRenderer({
+        polylineOptions: {
+            strokeColor: '#ff5722',
+            strokeOpacity: 0.8,
+            strokeWeight: 3,
+            icons: [{
+                icon: {
+                    scale: 3,
+                    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+                },
+                repeat: '200px'
+            }]
+
+        },
         suppressMarkers: true
     });
     directionsDisplay.setMap(map);
