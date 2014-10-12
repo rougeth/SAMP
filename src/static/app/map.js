@@ -9,7 +9,6 @@ function latlng(lat, lng) {
 }
 
 function init_samp_map() {
-    directionsDisplay = new google.maps.DirectionsRenderer();
     var brasilia = latlng(-15.7929449, -47.8882138);
     var mapOptions = {
         maxZoom: 17,
@@ -28,7 +27,6 @@ function init_samp_map() {
 
     map = new google.maps.Map(document.getElementById('samp-map'),
         mapOptions);
-    directionsDisplay.setMap(map);
 
    // Bounds for DF
    var strictBounds = new google.maps.LatLngBounds(
@@ -78,6 +76,11 @@ function add_subway_station(locale) {
 
 function showRoute(waypoints) {
     var p = [];
+    remove_rendered_routes();
+    directionsDisplay = new google.maps.DirectionsRenderer({
+        suppressMarkers: true
+    });
+    directionsDisplay.setMap(map);
     waypoints.forEach(function(point) {
         p.push({
             location: latlng(point.latitude, point.longitude)
@@ -102,6 +105,13 @@ function remove_all_markers() {
         markers[i].setMap(null);
     }
     markers = [];
+}
+
+function remove_rendered_routes() {
+    if(directionsDisplay) {
+        directionsDisplay.setMap(null);
+        directionsDisplay = null;
+    }
 }
 
 google.maps.event.addDomListener(window, 'load', init_samp_map);
