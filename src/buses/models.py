@@ -25,4 +25,3 @@ class LineWaypoint(models.Model):
     line = models.ForeignKey(Line)
     latitude = models.FloatField()
     longitude = models.FloatField()
-

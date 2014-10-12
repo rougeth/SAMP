@@ -33,6 +33,18 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
     });
 }])
 
+.factory('apiLineRoute', ['$resource', function($resource) {
+    return $resource('/api/buses/route/:line', null, {
+        'query': {
+            method: 'GET',
+            params: {
+                line: 'line'
+            },
+           isArray:true
+        }
+    });
+}])
+
 .controller('BusStopsController', ['$scope', 'apiStops',
     function($scope, apiStops) {
 
@@ -51,8 +63,9 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
     });
 }])
 
-.controller('BusLinesController', ['$scope', 'apiRegions', 'apiLinesPerRegions',
-    function($scope, apiRegions, apiLinesPerRegions) {
+.controller('BusLinesController', ['$scope', 'apiRegions',
+        'apiLinesPerRegions', 'apiLineRoute',
+    function($scope, apiRegions, apiLinesPerRegions, apiLineRoute) {
 
     console.log('BusLinesController');
     reset();
@@ -72,6 +85,16 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
             region_b: $scope.destination.name
         }, function(lines) {
             $scope.lines = lines;
+        })
+    }
+
+    $scope.selectLine = function(line) {
+        $('#bus_lines').modal('hide');
+        apiLineRoute.query({
+            line: line.name
+        }, function(waypoints) {
+            p = waypoints;
+            showRoute(p);
         })
     }
 }]);

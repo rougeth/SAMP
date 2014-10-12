@@ -1,8 +1,16 @@
 var map;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
 var markers = [];
 
+
+function latlng(lat, lng) {
+    return new google.maps.LatLng(lat, lng);
+}
+
 function init_samp_map() {
-    var brasilia = new google.maps.LatLng(-15.7929449, -47.8882138);
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    var brasilia = latlng(-15.7929449, -47.8882138);
     var mapOptions = {
         maxZoom: 17,
         minZoom: 14,
@@ -20,11 +28,12 @@ function init_samp_map() {
 
     map = new google.maps.Map(document.getElementById('samp-map'),
         mapOptions);
+    directionsDisplay.setMap(map);
 
    // Bounds for DF
    var strictBounds = new google.maps.LatLngBounds(
-     new google.maps.LatLng(-15.792, -47.888),
-     new google.maps.LatLng(-15.7929449, -47.8882138)
+     latlng(-15.792, -47.888),
+     latlng(-15.7929449, -47.8882138)
    );
 
    // Listen for the dragend event
@@ -65,6 +74,27 @@ function add_subway_station(locale) {
         icon: '/static/imgs/subway_stop.png'
     });
     markers.push(marker);
+}
+
+function showRoute(waypoints) {
+    var p = [];
+    waypoints.forEach(function(point) {
+        p.push({
+            location: latlng(point.latitude, point.longitude)
+        });
+    });
+    startPoint = p.shift();
+    var request = {
+        origin: startPoint.location,
+        destination: startPoint.location,
+        waypoints: p,
+        travelMode: google.maps.TravelMode.DRIVING
+    }
+    directionsService.route(request, function(response, status) {
+        console.log(status);
+        console.log(response);
+        directionsDisplay.setDirections(response);
+    });
 }
 
 function remove_all_markers() {

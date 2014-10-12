@@ -5,9 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
-from buses.models import Line, Region, Stop
+from buses.models import Line, Region, Stop, LineWaypoint
 from buses.serializers import (LinesSerializer, RegionsSerializer,
-                                StopsSerializer)
+                                StopsSerializer, LineWaypointsSerializer)
 
 
 class JSONResponse(HttpResponse):
@@ -44,4 +44,14 @@ def bus_lines(request, region_a, region_b):
         lines = Line.objects.filter(regions__id=region_a.id).filter(regions__id=region_b.id)
 
         serializer = LinesSerializer(lines, many=True)
+        return JSONResponse(serializer.data)
+
+
+@csrf_exempt
+def bus_route(request, line):
+    if request.method == 'GET':
+        line = Line.objects.get(name=line)
+        points = LineWaypoint.objects.filter(line=line)
+
+        serializer = LineWaypointsSerializer(points, many=True)
         return JSONResponse(serializer.data)

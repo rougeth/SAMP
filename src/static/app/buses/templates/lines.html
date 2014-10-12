@@ -29,7 +29,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="line in lines">
+            <tr ng-repeat="line in lines" ng-click="selectLine(line)">
               <td>{$ line.name $}</td>
               <td>{$ line.regions $}</td>
             </tr>
@@ -37,7 +37,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button ng-click="search()" type="button" class="btn btn-primary">Pesquisar</button>
+        <button ng-click="search()" type="button" class="btn btn-default">Pesquisar</button>
       </div>
     </div>
   </div>
