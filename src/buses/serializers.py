@@ -14,6 +14,8 @@ class RegionsSerializer(serializers.ModelSerializer):
         fields = ('name',)
 
 class LinesSerializer(serializers.ModelSerializer):
+    regions = RegionsSerializer(many=True)
+
     class Meta:
         model = Line
         fields = ('name', 'regions')

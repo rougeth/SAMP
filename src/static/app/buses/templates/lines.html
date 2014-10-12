@@ -1,4 +1,4 @@
-<div class="modal fade" id="bus_lines" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal" id="bus_lines" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -31,7 +31,11 @@
           <tbody>
             <tr ng-repeat="line in lines" ng-click="selectLine(line)">
               <td>{$ line.name $}</td>
-              <td>{$ line.regions $}</td>
+              <td>
+                <span class="region-name" ng-repeat="region in line.regions | orderBy:'name'">
+                {$ region.name $}
+                </span>
+              </td>
             </tr>
           </tbody>
         </table>

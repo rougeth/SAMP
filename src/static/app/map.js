@@ -12,7 +12,7 @@ function init_samp_map() {
     var brasilia = latlng(-15.7929449, -47.8882138);
     var mapOptions = {
         maxZoom: 17,
-        minZoom: 14,
+        minZoom: 13,
         zoom: 15,
         streetViewControl: false,
         center: brasilia,
@@ -69,7 +69,7 @@ function add_subway_station(locale) {
     var marker = new google.maps.Marker({
         position: locale,
         map: map,
-        icon: '/static/imgs/subway_stop.png'
+        icon: '/static/imgs/subway_stop2.png'
     });
     markers.push(marker);
 }
@@ -94,8 +94,6 @@ function showRoute(waypoints) {
         travelMode: google.maps.TravelMode.DRIVING
     }
     directionsService.route(request, function(response, status) {
-        console.log(status);
-        console.log(response);
         directionsDisplay.setDirections(response);
     });
 }
