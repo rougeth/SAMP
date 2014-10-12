@@ -42,8 +42,9 @@ html {
     color: #fff;
 }
 
-.samp-navbar .navbar-nav>li>.dropdown-menu {
-    border-top: 1px solid #738ffe;
+.samp-navbar .navbar-nav .open .dropdown-menu > li > a:hover,
+.samp-navbar .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #fff;
 }
 
 .samp-navbar .navbar-toggle,
@@ -65,29 +66,12 @@ html {
     color: #fff;
 }
 
-.samp-subnavbar {
-    margin-bottom: 0;
-    border-radius: 0;
-    border: 0;
-    background: #212121;
+.samp-navbar .navbar-nav .open .dropdown-menu>li>a:hover {
+    background: #455ede;
 }
 
-.samp-subnavbar .navbar-nav>li>a {
-    color: #e0e0e0;
-}
-
-.samp-subnavbar .navbar-brand:hover,
-.samp-subnavbar .navbar-brand:focus,
-.samp-subnavbar .navbar-nav>li>a:hover,
-.samp-subnavbar .navbar-nav>li>a:focus {
-    color: #fff;
-}
-
-.samp-subnavbar .navbar-nav>.open>a,
-.samp-subnavbar .navbar-nav>.open>a:hover,
-.samp-subnavbar .navbar-nav>.open>a:focus {
-    background: #424242;
-    color: #fff;
+.samp-navbar .dropdown-menu {
+    background: #4E6CEF;
 }
 
 .region-name {
