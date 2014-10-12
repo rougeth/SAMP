@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-11 19:42-0300\n"
+"POT-Creation-Date: 2014-10-12 17:17-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: core/templates/core/index.html:28
-msgid "Bus Routes"
+#: core/templates/core/index.html:31
+#| msgid "Bus Routes"
+msgid "Routes"
 msgstr "Linhas"
 
-#: core/templates/core/index.html:29
-msgid "Bus Stops"
+#: core/templates/core/index.html:32
+#| msgid "Bus Stops"
+msgid "Stops"
 msgstr "Paradas"
 
-#: core/templates/core/index.html:30
+#: core/templates/core/index.html:35
 msgid "Stations"
 msgstr "Estações"
 
