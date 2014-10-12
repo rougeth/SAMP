@@ -4,12 +4,23 @@ angular.module('samp', [
     'samp.subways'
 ])
 
-.config(function($interpolateProvider, $routeProvider) {
+.config(['$interpolateProvider', '$routeProvider'
+    ,function($interpolateProvider, $routeProvider) {
+
     $interpolateProvider.startSymbol('{$');
     $interpolateProvider.endSymbol('$}');
 
-    $routeProvider.otherwise({redirectTo: '/'});
-});
+    $routeProvider
+        .when('/', {
+            controller: 'HomeController',
+            template: ' '
+        })
+        .otherwise({redirectTo: '/'});
+}])
+
+.controller('HomeController', [function() {
+    reset();
+}]);
 
 function reset() {
     remove_all_markers();
