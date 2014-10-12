@@ -12,9 +12,10 @@ function init_samp_map() {
     var brasilia = latlng(-15.7929449, -47.8882138);
     var mapOptions = {
         maxZoom: 17,
-        minZoom: 13,
+        minZoom: 12,
         zoom: 15,
         streetViewControl: false,
+        mapTypeControl: false,
         center: brasilia,
         styles: [
         {
