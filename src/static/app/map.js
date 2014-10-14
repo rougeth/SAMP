@@ -2,14 +2,28 @@ var map;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var markers = [];
+var brasilia = latlng(-15.7929449, -47.8882138);
 
+var user = {
+    latlng: null
+}
+
+
+function showCurrentPosition(position) {
+    user.latlng = latlng(
+        position.coords.latitude,
+        position.coords.longitude
+    )
+
+    add_user_marker(user.latlng);
+    map.setCenter(user.latlng);
+}
 
 function latlng(lat, lng) {
     return new google.maps.LatLng(lat, lng);
 }
 
 function init_samp_map() {
-    var brasilia = latlng(-15.7929449, -47.8882138);
     var mapOptions = {
         maxZoom: 17,
         minZoom: 12,
@@ -55,6 +69,17 @@ function init_samp_map() {
 
     map.setCenter(new google.maps.LatLng(y, x));
    });
+}
+
+function getLocation(userCentered) {
+    return navigator.geolocation.getCurrentPosition(showCurrentPosition);
+}
+
+function add_user_marker(locale) {
+    new google.maps.Marker({
+        position: locale,
+        map: map,
+    });
 }
 
 function add_bus_stop(locale) {

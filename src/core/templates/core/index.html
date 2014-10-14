@@ -26,13 +26,19 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ônibus <span class="caret"></span></a>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">Ônibus <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#/buses/lines" data-toggle="modal" data-target="#bus_lines">{% trans 'Routes' %}</a></li>
-              <li><a href="#/buses/stops">{% trans 'Stops' %}</a></li>
+              <li><a href="#/buses/lines" data-toggle="modal" data-target="#bus_lines">{% trans 'Linhas' %}</a></li>
+              <li><a href="#/buses/stops">{% trans 'Paradas' %}</a></li>
             </ul>
           </li>
-          <li><a href="#/subways/stations">{% trans 'Stations' %}</a></li>
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">Metrô <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#/subways/stations">{% trans 'Estações' %}</a></li>
+            </ul>
+          </li>
+          <li><a href="" id="currentLocation"><span class="glyphicon glyphicon-map-marker"></span> Minha localização</a></li>
         </ul>
       </div>
     </div>
@@ -59,6 +65,13 @@
       if( $(e.target).is('a') ) {
         $(this).collapse('hide');
       }
+    });
+    $('#currentLocation').click(function() {
+      if(!user.latlng) {
+        getLocation(true);
+      } else {
+      map.setCenter(user.latlng);
+    }
     });
 
   </script>
