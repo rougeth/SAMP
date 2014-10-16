@@ -12,3 +12,16 @@ class Region(models.Model):
     def __str__(self):
         return self.name
 
+
+class Line(models.Model):
+    name = models.CharField(max_length=50)
+    regions = models.ManyToManyField(Region)
+
+    def __str__(self):
+        return self.name
+
+
+class LineWaypoint(models.Model):
+    line = models.ForeignKey(Line)
+    latitude = models.FloatField()
+    longitude = models.FloatField()

@@ -12,3 +12,15 @@ class RegionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = ('name',)
+
+class LinesSerializer(serializers.ModelSerializer):
+    regions = RegionsSerializer(many=True)
+
+    class Meta:
+        model = Line
+        fields = ('name', 'regions')
+
+class LineWaypointsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LineWaypoint
+        fields = ('latitude', 'longitude')

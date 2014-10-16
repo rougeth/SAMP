@@ -32,3 +32,23 @@ def subway_regions(request):
         regions = Region.objects.all()
         serializer = RegionsSerializer(regions, many=True)
         return JSONResponse(serializer.data)
+
+@csrf_exempt
+def subway_lines(request, region_a, region_b):
+    if request.method == 'GET':
+        region_a = Region.objects.get(name=region_a)
+        region_b = Region.objects.get(name=region_b)
+        lines = Line.objects.filter(regions__id=region_a.id).filter(regions__id=region_b.id)
+
+        serializer = LinesSerializer(lines, many=True)
+        return JSONResponse(serializer.data)
+
+
+@csrf_exempt
+def subway_route(request, line):
+    if request.method == 'GET':
+        line = Line.objects.get(name=line)
+        points = LineWaypoint.objects.filter(line=line)
+
+        serializer = LineWaypointsSerializer(points, many=True)
+        return JSONResponse(serializer.data)
