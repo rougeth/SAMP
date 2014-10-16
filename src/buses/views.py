@@ -31,17 +31,26 @@ def bus_regions(request):
 @csrf_exempt
 def bus_stops(request):
     if request.method == 'GET':
-        stops = Stop.objects.all()
+        r = Region.objects.get(name='W3 Sul')
+        stops = Stop.objects.filter(region=r)
         serializer = StopsSerializer(stops, many=True)
         return JSONResponse(serializer.data)
 
 
 @csrf_exempt
-def bus_lines(request, region_a, region_b):
+def bus_lines_per_regions(request, region_a, region_b):
     if request.method == 'GET':
         region_a = Region.objects.get(name=region_a)
         region_b = Region.objects.get(name=region_b)
         lines = Line.objects.filter(regions__id=region_a.id).filter(regions__id=region_b.id)
+
+        serializer = LinesSerializer(lines, many=True)
+        return JSONResponse(serializer.data)
+
+@csrf_exempt
+def bus_lines(request):
+    if request.method == 'GET':
+        lines = Line.objects.all()
 
         serializer = LinesSerializer(lines, many=True)
         return JSONResponse(serializer.data)
