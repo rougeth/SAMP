@@ -3,10 +3,12 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var markers = [];
 var brasilia = latlng(-15.7929449, -47.8882138);
+var cached = {}
 
 var user = {
     latlng: null
 }
+
 
 
 function showCurrentPosition(position) {
@@ -35,7 +37,7 @@ function init_samp_map() {
         {
             featureType: "transit.station.bus",
             stylers: [
-            { visibility: "off" }
+            { visibility: "on" }
             ]
         }]
     };
@@ -68,6 +70,11 @@ function init_samp_map() {
     if (y > maxY+limit) y = maxY;
 
     map.setCenter(new google.maps.LatLng(y, x));
+   });
+
+   google.maps.event.addListener(map, 'click', function(event) {
+    console.log(event.latLng.k + ',' + event.latLng.B);
+
    });
 }
 
