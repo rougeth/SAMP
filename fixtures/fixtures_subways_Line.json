@@ -1,0 +1,1 @@
+[{"fields": {"regions": [], "name": "Samambaia"}, "model": "subways.line", "pk": 1}, {"fields": {"regions": [1, 2, 3], "name": "Ceilândia"}, "model": "subways.line", "pk": 2}, {"fields": {"regions": [1, 2, 3], "name": "Plano Piloto"}, "model": "subways.line", "pk": 3}]
