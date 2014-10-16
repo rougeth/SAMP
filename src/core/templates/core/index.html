@@ -30,6 +30,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="#/buses/lines" data-toggle="modal" data-target="#bus_lines">{% trans 'Linhas' %}</a></li>
               <li><a href="#/buses/stops">{% trans 'Paradas' %}</a></li>
+              <li><a href="#/buses/stops">{% trans 'Localizar Ônibus' %}</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -37,9 +38,11 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="#/subways/lines" data-toggle="modal" data-target="#subway_lines">{% trans 'Linhas' %}</a></li>
               <li><a href="#/subways/stations">{% trans 'Estações' %}</a></li>
+              <li><a href="#/buses/stops">{% trans 'Localizar Metrô' %}</a></li>
             </ul>
           </li>
           <li><a href="" id="currentLocation"><span class="glyphicon glyphicon-map-marker"></span> Minha localização</a></li>
+          <li><a href="" id="currentLocation"><span class="glyphicon glyphicon-road"></span> Como chegar?</a></li>
         </ul>
       </div>
     </div>
