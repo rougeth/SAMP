@@ -24,8 +24,12 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
     return $resource('/api/buses/regions/');
 }])
 
+.factory('apiLines', ['$resource', function($resource) {
+    return $resource('/api/buses/lines/');
+}])
+
 .factory('apiLinesPerRegions', ['$resource', function($resource) {
-    return $resource('/api/buses/regions/:region_a/:region_b', null, {
+    return $resource('/api/buses/lines/:region_a/:region_b', null, {
         'query': {
             method: 'GET',
             params: {
@@ -68,8 +72,9 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
 }])
 
 .controller('BusLinesController', ['$scope', '$location', 'apiRegions',
-        'apiLinesPerRegions', 'apiLineRoute',
-    function($scope, $location,  apiRegions, apiLinesPerRegions, apiLineRoute) {
+        'apiLinesPerRegions', 'apiLineRoute', 'apiLines',
+    function($scope, $location,  apiRegions, apiLinesPerRegions, apiLineRoute,
+        apiLines) {
 
     console.log('BusLinesController');
     reset();
@@ -88,6 +93,13 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
             region_a: $scope.origin.name,
             region_b: $scope.destination.name
         }, function(lines) {
+            console.log(lines);
+            $scope.lines = lines;
+        })
+    }
+
+    $scope.getLines = function() {
+        apiLines.query(function(lines) {
             console.log(lines);
             $scope.lines = lines;
         })
