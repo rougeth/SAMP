@@ -5,15 +5,15 @@ angular.module('samp.subways', ['ngRoute', 'ngResource'])
         .when('/subways/stations', {
             controller: 'SubwaysStationsController',
             template: ' '
-        })
-        .when('/subways/lines', {
-            controller: 'SubwayLinesController',
-            templateUrl: '/static/app/subways/templates/lines.html'
-        })
-        .when('/subways/route/:line', {
-            controller: 'SubwayRouteController',
-            template: ' '
         });
+        // .when('/subways/lines', {
+        //     controller: 'SubwayLinesController',
+        //     templateUrl: '/static/app/subways/templates/lines.html'
+        // })
+        // .when('/subways/route/:line', {
+        //     controller: 'SubwayRouteController',
+        //     template: ' '
+        // });
 }])
 
 .factory('apiSubwayStations', ['$resource', function($resource) {
