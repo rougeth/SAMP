@@ -1,1 +1,0 @@
-[{"fields": {"regions": [], "name": "105"}, "model": "buses.line", "pk": 1}, {"fields": {"regions": [1, 2, 3], "name": "103"}, "model": "buses.line", "pk": 2}, {"fields": {"regions": [1, 2, 4, 5], "name": "Grande Circular"}, "model": "buses.line", "pk": 3}]
