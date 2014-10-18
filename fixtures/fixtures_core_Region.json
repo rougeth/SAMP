@@ -1,0 +1,1 @@
+[{"fields": {"name": "W3 Sul"}, "model": "core.region", "pk": 1}, {"fields": {"name": "W3 Norte"}, "model": "core.region", "pk": 2}, {"fields": {"name": "Black Hole"}, "model": "core.region", "pk": 3}, {"fields": {"name": "L2 Norte"}, "model": "core.region", "pk": 4}, {"fields": {"name": "L2 Sul"}, "model": "core.region", "pk": 5}]
