@@ -1,5 +1,6 @@
 angular.module('samp', [
     'ngRoute',
+    'samp.core',
     'samp.buses',
     'samp.subways'
 ])

@@ -5,7 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
-from subways.models import Region, Station, Line, LineWaypoint
+from core.models import Region
+from subways.models import Station, Line, LineWaypoint
 from subways.serializers import (RegionsSerializer, StationsSerializer,
                                 LinesSerializer, LineWaypointsSerializer)
 

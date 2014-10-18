@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
+from core.models import Region
 from buses.models import Line, Region, Stop, LineWaypoint
 from buses.serializers import (LinesSerializer, RegionsSerializer,
                                 StopsSerializer, LineWaypointsSerializer)
@@ -31,8 +32,8 @@ def bus_regions(request):
 @csrf_exempt
 def bus_stops(request):
     if request.method == 'GET':
-        r = Region.objects.get(name='W3 Sul')
-        stops = Stop.objects.filter(region=r)
+        r = Region.objects.get(name='Black Hole')
+        stops = Stop.objects.exclude(region=r)
         serializer = StopsSerializer(stops, many=True)
         return JSONResponse(serializer.data)
 

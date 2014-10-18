@@ -77,3 +77,16 @@ html {
 .region-name {
     margin-right: 1em;
 }
+
+.samp-second-navbar {
+    margin: 0;
+    border-color: #fff;
+    border-radius: 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+}
+
+.samp-second-navbar .navbar-nav > li {
+    word-spacing: 1em;
+}

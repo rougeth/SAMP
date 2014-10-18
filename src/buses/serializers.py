@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from buses.models import Line, Region, Stop, LineWaypoint
+from core.models import Region
+from buses.models import Line, Stop, LineWaypoint
 
 
 class StopsSerializer(serializers.ModelSerializer):

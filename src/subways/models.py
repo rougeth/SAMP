@@ -1,21 +1,19 @@
 from django.db import models
 
+from core.models import Region
+
 
 class Station(models.Model):
+    region = models.ForeignKey(Region,
+        related_name='%(app_label)s_%(class)s_region')
     latitude = models.FloatField()
     longitude = models.FloatField()
 
 
-class Region(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-
 class Line(models.Model):
     name = models.CharField(max_length=50)
-    regions = models.ManyToManyField(Region)
+    regions = models.ManyToManyField(Region,
+        related_name='%(app_label)s_%(class)s_region')
 
     def __str__(self):
         return self.name

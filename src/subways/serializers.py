@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from subways.models import Region, Station, Line, LineWaypoint
+from core.models import Region
+from subways.models import Station, Line, LineWaypoint
 
 
 class StationsSerializer(serializers.ModelSerializer):
