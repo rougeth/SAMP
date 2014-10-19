@@ -13,6 +13,14 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
         .when('/buses/route/:line', {
             controller: 'BusRouteController',
             template: ' '
+        })
+        .when('/buses/find-bus', {
+            controller: 'FindBusController',
+            templateUrl: '/static/app/buses/templates/find-bus.html'
+        })
+        .when('/buses/track/:line', {
+            controller: 'trackerController',
+            template: ' '
         });
 }])
 
@@ -26,6 +34,10 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
 
 .factory('apiLines', ['$resource', function($resource) {
     return $resource('/api/buses/lines/');
+}])
+
+.factory('apiBuses', ['$resource', function($resource) {
+    return $resource('/api/buses/buses/');
 }])
 
 .factory('apiLinesPerRegions', ['$resource', function($resource) {
@@ -43,6 +55,18 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
 
 .factory('apiLineRoute', ['$resource', function($resource) {
     return $resource('/api/buses/route/:line', null, {
+        'query': {
+            method: 'GET',
+            params: {
+                line: 'line'
+            },
+           isArray:true
+        }
+    });
+}])
+
+.factory('apiTracker', ['$resource', function($resource) {
+    return $resource('/api/buses/track/:line', null, {
         'query': {
             method: 'GET',
             params: {
@@ -122,4 +146,66 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
         p = waypoints;
         showRoute(p);
     });
+}])
+
+.controller('FindBusController', ['$scope', '$location', 'apiLines',
+    function($scope, $location, apiLines) {
+
+    reset();
+    setTimeout(function() {
+        $('#find-bus').modal('show');
+    }, 100);
+
+    apiLines.query(function(lines) {
+        console.log(lines);
+        $scope.lines = lines;
+    })
+
+    $scope.trackLine = function(line) {
+        $('#find-bus').modal('hide');
+        $location.path('/buses/track/' + line.name);
+    }
+}])
+
+.controller('trackerController', ['$scope', '$routeParams', 'apiTracker', 'apiLineRoute',
+    function($scope, $routeParams, apiTracker, apiLineRoute) {
+
+    reset();
+    console.log('tracker');
+    apiTracker.query({
+        line: $routeParams.line
+    }, function(position) {
+        var i = 0;
+        for(i=0; i<position.length; i++) {
+            console.log(position[i].latitude, position[i].longitude);
+            add_bus(latlng(
+                position[i].latitude,
+                position[i].longitude
+            ));
+        }
+    });
+
+    apiLineRoute.query({
+        line: $routeParams.line
+    }, function(waypoints) {
+        p = waypoints;
+        showRoute(p);
+    });
+
+    setInterval(function () {
+        $scope.$apply(function () {
+            apiTracker.query({
+                line: $routeParams.line
+            }, function(position) {
+                var i = 0;
+                for(i=0; i<position.length; i++) {
+                    buses[i].setPosition({
+                        lat: position[i].latitude,
+                        lng: position[i].longitude
+                    });
+                }
+            });
+        });
+    }, 2000);
+
 }]);

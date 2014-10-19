@@ -1,3 +1,5 @@
+from itertools import cycle
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -6,9 +8,10 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
 from core.models import Region
-from buses.models import Line, Region, Stop, LineWaypoint
+from buses.models import Line, Region, Stop, LineWaypoint, Bus, BusPosition
 from buses.serializers import (LinesSerializer, RegionsSerializer,
-                                StopsSerializer, LineWaypointsSerializer)
+                                StopsSerializer, LineWaypointsSerializer,
+                                BusSerializer, BusPositionSerializer)
 
 
 class JSONResponse(HttpResponse):
@@ -64,4 +67,35 @@ def bus_route(request, line):
         points = LineWaypoint.objects.filter(line=line)
 
         serializer = LineWaypointsSerializer(points, many=True)
+        return JSONResponse(serializer.data)
+
+@csrf_exempt
+def bus_buses(request):
+    if request.method == 'GET':
+        buses = Bus.objects.all()
+
+        serializer = BusSerializer(buses, many=True)
+        return JSONResponse(serializer.data)
+
+@csrf_exempt
+def bus_position(request, line):
+    if request.method == 'GET':
+        line = Line.objects.get(name=line)
+        buses = Bus.objects.filter(line=line)
+        positions = cycle(BusPosition.objects.filter(bus__in=buses))
+        r = []
+        check = False
+        for p in positions:
+            if check:
+                p.position = True
+                p.save()
+                check = False
+                break
+            if p.position:
+                r.append(p)
+                p.position = False
+                p.save()
+                check = True
+
+        serializer = BusPositionSerializer(r, many=True)
         return JSONResponse(serializer.data)

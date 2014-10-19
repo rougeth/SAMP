@@ -4,6 +4,7 @@ var directionsService = new google.maps.DirectionsService();
 var markers = [];
 var brasilia = latlng(-15.7929449, -47.8882138);
 var cached = {}
+var buses = [];
 
 var user = {
     latlng: null
@@ -27,7 +28,7 @@ function latlng(lat, lng) {
 
 function init_samp_map() {
     var mapOptions = {
-        maxZoom: 17,
+//maxZoom: 17,
         minZoom: 12,
         zoom: 15,
         streetViewControl: false,
@@ -96,6 +97,16 @@ function add_bus_stop(locale) {
         icon: '/static/imgs/bus_stop.png'
     });
     markers.push(marker);
+
+}
+
+function add_bus(locale) {
+    var bus = new google.maps.Marker({
+        position: locale,
+        map: map,
+        icon: '/static/imgs/bus.png'
+    });
+    buses.push(bus);
 }
 
 function add_subway_station(locale) {
@@ -149,6 +160,10 @@ function remove_all_markers() {
         markers[i].setMap(null);
     }
     markers = [];
+    for(i = 0; i<buses.length; i++) {
+        buses[i].setMap(null);
+    }
+    buses = [];
 }
 
 function remove_rendered_routes() {
