@@ -2,15 +2,15 @@ var map;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var markers = [];
+var markers_radius = [];
 var brasilia = latlng(-15.7929449, -47.8882138);
 var cached = {}
 var buses = [];
-
 var user = {
     latlng: null
 }
-
-
+var ctrl = null;
+var howtoget_markers = [];
 
 function showCurrentPosition(position) {
     user.latlng = latlng(
@@ -28,7 +28,7 @@ function latlng(lat, lng) {
 
 function init_samp_map() {
     var mapOptions = {
-//maxZoom: 17,
+        maxZoom: 17,
         minZoom: 12,
         zoom: 15,
         streetViewControl: false,
@@ -38,7 +38,7 @@ function init_samp_map() {
         {
             featureType: "transit.station.bus",
             stylers: [
-            { visibility: "on" }
+            { visibility: "off" }
             ]
         }]
     };
@@ -71,12 +71,8 @@ function init_samp_map() {
     if (y > maxY+limit) y = maxY;
 
     map.setCenter(new google.maps.LatLng(y, x));
-   });
+    });
 
-   google.maps.event.addListener(map, 'click', function(event) {
-    console.log(event.latLng.k + ',' + event.latLng.B);
-
-   });
 }
 
 function getLocation(userCentered) {
@@ -91,6 +87,17 @@ function add_user_marker(locale) {
     });
 }
 
+function add_howtoget_marker(locale) {
+    if(howtoget_markers.length < 2) {
+        var m = new google.maps.Marker({
+            position: locale,
+            map: map,
+            draggable: true
+        });
+        howtoget_markers.push(m);
+    }
+}
+
 function add_bus_stop(locale) {
     var marker = new google.maps.Marker({
         position: locale,
@@ -98,7 +105,15 @@ function add_bus_stop(locale) {
         icon: '/static/imgs/bus_stop.png'
     });
     markers.push(marker);
+}
 
+function add_bus_stop_radius(j, locale) {
+    var marker = new google.maps.Marker({
+        position: locale,
+        map: map,
+        icon: '/static/imgs/bus_stop.png'
+    });
+    markers_radius.push(marker);
 }
 
 function add_bus(locale) {
@@ -166,6 +181,10 @@ function remove_all_markers() {
         buses[i].setMap(null);
     }
     buses = [];
+    for(i = 0; i<markers_radius.length; i++) {
+        markers_radius[i].setMap(null);
+    }
+    markers_radius = [];
 }
 
 function remove_rendered_routes() {

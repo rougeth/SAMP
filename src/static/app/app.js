@@ -27,6 +27,7 @@ function reset() {
     remove_all_markers();
     remove_rendered_routes();
     buses = [];
+    ctrl = null;
     $('#samp-map')
         .css('height', '-webkit-calc(100vh - 52px)')
         .css('height', '-moz-cal(100vh - 52px)')

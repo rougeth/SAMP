@@ -7,6 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
+from haversine import haversine
+
 from core.models import Region
 from buses.models import Line, Region, Stop, LineWaypoint, Bus, BusPosition
 from buses.serializers import (LinesSerializer, RegionsSerializer,
@@ -98,4 +100,16 @@ def bus_position(request, line):
                 check = True
 
         serializer = BusPositionSerializer(r, many=True)
+        return JSONResponse(serializer.data)
+
+@csrf_exempt
+def bus_stops_radius(request, lat, lng):
+    if request.method == 'GET':
+        stops = Stop.objects.all()
+        near = []
+        for s in stops:
+            if haversine((float(lat), float(lng)), (s.latitude, s.longitude)) < 0.3:
+                near.append(s)
+
+        serializer = StopsSerializer(near, many=True)
         return JSONResponse(serializer.data)
