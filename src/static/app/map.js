@@ -87,6 +87,7 @@ function add_user_marker(locale) {
     new google.maps.Marker({
         position: locale,
         map: map,
+        icon: '/static/imgs/person.png'
     });
 }
 
@@ -137,6 +138,7 @@ function showRoute(waypoints) {
         },
         suppressMarkers: true
     });
+    console.log(directionsDisplay);
     directionsDisplay.setMap(map);
     waypoints.forEach(function(point) {
         p.push({
