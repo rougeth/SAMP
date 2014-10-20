@@ -26,6 +26,10 @@ angular.module('samp', [
 function reset() {
     remove_all_markers();
     remove_rendered_routes();
+    for(i = 0; i<howtoget_markers.length; i++) {
+        howtoget_markers[i].setMap(null);
+    }
+    howtoget_markers = [];
     buses = [];
     ctrl = null;
     $('#samp-map')

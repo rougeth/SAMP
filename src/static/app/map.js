@@ -6,6 +6,7 @@ var markers_radius = [];
 var brasilia = latlng(-15.7929449, -47.8882138);
 var cached = {}
 var buses = [];
+var circles = [];
 var user = {
     latlng: null
 }
@@ -116,6 +117,20 @@ function add_bus_stop_radius(j, locale) {
     markers_radius.push(marker);
 }
 
+function add_bus_stop_radius_circle(locale) {
+    var circle = new google.maps.Circle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.4,
+        strokeWeight: 1,
+        fillColor: '#FF0000',
+        fillOpacity: 0.05,
+        map: map,
+        center: locale,
+        radius: 300
+    });
+    circles.push(circle);
+}
+
 function add_bus(locale) {
     var bus = new google.maps.Marker({
         position: locale,
@@ -185,6 +200,10 @@ function remove_all_markers() {
         markers_radius[i].setMap(null);
     }
     markers_radius = [];
+    for(i = 0; i<circles.length; i++) {
+        circles[i].setMap(null);
+    }
+    circles = [];
 }
 
 function remove_rendered_routes() {
