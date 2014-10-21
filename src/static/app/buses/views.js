@@ -206,6 +206,6 @@ angular.module('samp.buses', ['ngRoute', 'ngResource'])
                 }
             });
         });
-    }, 2000);
+    }, 3000);
 
 }]);

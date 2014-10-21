@@ -113,3 +113,28 @@ def bus_stops_radius(request, lat, lng):
 
         serializer = StopsSerializer(near, many=True)
         return JSONResponse(serializer.data)
+
+@csrf_exempt
+def bus_lines_radius(request, origin_lat, origin_lng, destiny_lat, destiny_lng):
+    if request.method == 'GET':
+        stops = Stop.objects.all()
+        origin_near = []
+        destiny_near = []
+        origin = (float(origin_lat), float(origin_lng))
+        destiny = (float(destiny_lat), float(destiny_lng))
+
+        for s in stops:
+            if haversine(origin, (s.latitude, s.longitude)) < 0.3:
+                origin_near.append(s.region)
+
+            if haversine(destiny, (s.latitude, s.longitude)) < 0.3:
+                destiny_near.append(s.region)
+
+        origin_near = list(set(origin_near))
+        destiny_near = list(set(destiny_near))
+
+
+        lines = Line.objects.filter(regions__in=destiny_near).filter(regions__in=origin_near)
+
+        serializer = LinesSerializer(lines, many=True)
+        return JSONResponse(serializer.data)

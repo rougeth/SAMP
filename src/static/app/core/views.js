@@ -29,8 +29,35 @@ angular.module('samp.core', ['ngRoute', 'ngResource'])
     });
 }])
 
-.controller('HowToGetController', ['$scope', 'apiStopsPerRadius',
-    function($scope, apiStopsPerRadius) {
+.factory('apiLinesPerRadius', ['$resource', function($resource) {
+    return $resource('/api/buses/lines/radius/:lat1/:lng1/:lat2/:lng2', null, {
+        'query': {
+            method: 'GET',
+            params: {
+                lat1: 'lat1',
+                lng1: 'lng1',
+                lat2: 'lat2',
+                lng2: 'lng2'
+            },
+           isArray:true
+        }
+    });
+}])
+
+.factory('apiLineRoute', ['$resource', function($resource) {
+    return $resource('/api/buses/route/:line', null, {
+        'query': {
+            method: 'GET',
+            params: {
+                line: 'line'
+            },
+           isArray:true
+        }
+    });
+}])
+
+.controller('HowToGetController', ['$scope', 'apiStopsPerRadius', 'apiLinesPerRadius', 'apiLineRoute',
+    function($scope, apiStopsPerRadius, apiLinesPerRadius, apiLineRoute) {
     reset();
     $scope.optLine = false;
 
@@ -63,13 +90,22 @@ angular.module('samp.core', ['ngRoute', 'ngResource'])
                         }
                     })
                 }
+                apiLinesPerRadius.query({
+                    lat1: howtoget_markers[0].getPosition().k,
+                    lng1: howtoget_markers[0].getPosition().B,
+                    lat2: howtoget_markers[1].getPosition().k,
+                    lng2: howtoget_markers[1].getPosition().B
+                }, function(lines) {
+                    $scope.lines = lines;
+                    $scope.optLine = true;
+                });
             }
-            $scope.optLine = true;
         }
         google.maps.event.addListener(howtoget_markers[0], 'dragend', dragEvent);
         google.maps.event.addListener(howtoget_markers[1], 'dragend', dragEvent);
         function dragEvent() {
             if(ctrl == 'howToGet') {
+                remove_rendered_routes();
                 remove_all_markers();
                 for(i=0; i<howtoget_markers.length; i++) {
                     add_bus_stop_radius_circle(latlng(
@@ -86,10 +122,29 @@ angular.module('samp.core', ['ngRoute', 'ngResource'])
                         }
                     })
                 }
+                apiLinesPerRadius.query({
+                    lat1: howtoget_markers[0].getPosition().k,
+                    lng1: howtoget_markers[0].getPosition().B,
+                    lat2: howtoget_markers[1].getPosition().k,
+                    lng2: howtoget_markers[1].getPosition().B
+                }, function(lines) {
+                    $scope.lines = lines;
+                    $scope.optLine = true;
+                });
             }
         }
-    });
 
-    $scope.selectDestiny = function() {
+    $scope.getLine = function() {
+        console.log($scope.selectedLine.name);
+        apiLineRoute.query({
+            line: $scope.selectedLine.name
+
+        }, function(route) {
+            showRoute(route);
+            console.log(route);
+        })
     }
+
+
+    });
 }]);
