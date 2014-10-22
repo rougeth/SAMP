@@ -37,7 +37,7 @@ function init_samp_map() {
         center: brasilia,
         styles: [
         {
-            featureType: "transit.station.bus",
+            featureType: "transit.station",
             stylers: [
             { visibility: "off" }
             ]
@@ -72,6 +72,11 @@ function init_samp_map() {
     if (y > maxY+limit) y = maxY;
 
     map.setCenter(new google.maps.LatLng(y, x));
+    });
+
+
+    google.maps.event.addListener(map, 'click', function(event){
+        console.log(event.latLng.k + ',' + event.latLng.B);
     });
 
 }
@@ -147,6 +152,22 @@ function add_subway_station(locale) {
         icon: '/static/imgs/subway_stop2.png'
     });
     markers.push(marker);
+}
+
+function showSubwayRoute(waypoints) {
+    var points = [];
+    for(p in waypoints) {
+        points.push(latlng(p.latitude, p.longitude));
+    }
+    var subwayPath= new google.maps.Polyline({
+        path: points,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    });
+
+      subwayPath.setMap(map);
 }
 
 function showRoute(waypoints) {

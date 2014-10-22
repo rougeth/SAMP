@@ -29,7 +29,7 @@ class JSONResponse(HttpResponse):
 @csrf_exempt
 def bus_regions(request):
     if request.method == 'GET':
-        regions = Region.objects.all()
+        regions = Region.objects.exclude(name='Black Hole')
         serializer = RegionsSerializer(regions, many=True)
         return JSONResponse(serializer.data)
 
@@ -38,7 +38,7 @@ def bus_regions(request):
 def bus_stops(request):
     if request.method == 'GET':
         r = Region.objects.get(name='Black Hole')
-        stops = Stop.objects.exclude(region=r)
+        stops = Stop.objects.all()
         serializer = StopsSerializer(stops, many=True)
         return JSONResponse(serializer.data)
 
