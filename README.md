@@ -47,7 +47,7 @@ For the next instructions, be inside `/src` folder.
 
 - **Load fixtures**
 
-  `$ python manage.py loaddata ../fixtures/*.json`
+  `$ python manage.py loaddata ../fixtures_all.json`
 
 - **Run dev server**
 
